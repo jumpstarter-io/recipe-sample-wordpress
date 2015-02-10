@@ -1,0 +1,13 @@
+name wordpress
+package php5 nginx nodejs
+gd https://github.com/jumpstarter-io/trail.git /app/code/trail
+gd --depth 1 --branch 4.1-branch https://github.com/WordPress/WordPress.git /app/code/src
+run svn export http://plugins.svn.wordpress.org/sqlite-integration/tags/1.7/ /app/code/src/wp-content/plugins/sqlite-integration
+install /app/code/src/wp-content/plugins/sqlite-integration/db.php /app/code/src/wp-content/db.php
+install /app/code/src/wp-config-sample.php /app/code/src/wp-config.php
+run ln -s /app/state/uploads /app/code/src/wp-content/uploads
+gd https://github.com/jumpstarter-io/wp-jumpstarter.git /app/code/src/wp-content/plugins/jumpstarter
+insert /app/code/src/wp-config.php  " */" "define('DISALLOW_FILE_MODS', true);"
+insert /app/code/src/wp-config.php "define('DISALLOW_FILE_MODS', true);" "define('DB_DIR', '/app/state/wp-db');"
+run ln -s /app/code/trail/init.js /app/code/init
+install daemons.json /app/code/daemons.json
