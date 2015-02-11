@@ -1,17 +1,30 @@
 name wordpress
+
+# install php5, nginx and nodejs packages with jumpstart
 package php5 nginx nodejs
+
+# checking out trail
 gd https://github.com/jumpstarter-io/trail.git /app/code/trail
+run ln -s /app/code/trail/init.js /app/code/init
+install daemons.json /app/code/daemons.json
+
+# wordpress
 gd --depth 1 --branch 4.1-branch https://github.com/WordPress/WordPress.git /app/code/src
+
+# sqlite is prefered
 run svn export http://plugins.svn.wordpress.org/sqlite-integration/tags/1.7/ /app/code/src/wp-content/plugins/sqlite-integration
+
+# prepare wordpress
 install /app/code/src/wp-content/plugins/sqlite-integration/db.php /app/code/src/wp-content/db.php
 install /app/code/src/wp-config-sample.php /app/code/src/wp-config.php
 run ln -s /app/state/uploads /app/code/src/wp-content/uploads
+
+# install the jumpstarter wordpress plugin
 gd https://github.com/jumpstarter-io/wp-jumpstarter.git /app/code/src/wp-content/plugins/jumpstarter
 insert /app/code/src/wp-config.php  " */" "define('DISALLOW_FILE_MODS', true);"
 insert /app/code/src/wp-config.php "define('DISALLOW_FILE_MODS', true);" "define('DB_DIR', '/app/state/wp-db');"
-run ln -s /app/code/trail/init.js /app/code/init
-install daemons.json /app/code/daemons.json
-# change these any way you like, but you can't have '#' in them
+
+# change these salts if you like, but you can't have '#' in them.
 replace /app/code/src/wp-config.php "'AUTH_KEY',         'put your unique phrase here'" "'AUTH_KEY',         ']CkQOfQKrsCHy!e!B>``-s{&^=,@3Gi5jP|x.Rb+,_(4eVz@P/+ByMn;NhJ?85Jj'"
 replace /app/code/src/wp-config.php "'SECURE_AUTH_KEY',  'put your unique phrase here'" "'SECURE_AUTH_KEY',  '4+f{h+[lV_mh}2q3Dlmj/MmqDjg?e[6]NX6K^8@|Kgb|7&n@XO?*eyF+fdq-[2|X'"
 replace /app/code/src/wp-config.php "'LOGGED_IN_KEY',    'put your unique phrase here'" "'LOGGED_IN_KEY',    'jD.|1x5A}34L4Ce $B^j7Hcdj];7eADa4zB|MI{A -[N3&TG]mx0.cQ:d${WGIc^'"
