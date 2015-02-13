@@ -9,7 +9,7 @@ run ln -s /app/code/trail/init.js /app/code/init
 install daemons.json /app/code/daemons.json
 
 # wordpress
-gd --depth 1 --branch 4.1-branch https://github.com/WordPress/WordPress.git /app/code/src
+gd --depth 1 https://github.com/WordPress/WordPress.git /app/code/src
 
 # sqlite is prefered
 run svn export http://plugins.svn.wordpress.org/sqlite-integration/tags/1.7/ /app/code/src/wp-content/plugins/sqlite-integration
