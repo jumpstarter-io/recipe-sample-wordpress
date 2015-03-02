@@ -3,15 +3,20 @@ name wordpress
 # install php5, nginx and nodejs packages with jumpstart
 package php5 nginx nodejs
 
-# checking out trail
-gd https://github.com/jumpstarter-io/trail.git /app/code/trail
-run ln -s /app/code/trail/init.js /app/code/init
+# checking out js-init
+gd https://github.com/jumpstarter-io/js-init.git /app/code/js-init
+run ln -s /app/code/js-init/init.js /app/code/init
+
+# install our daemons.json
 install daemons.json /app/code/daemons.json
 
-# wordpress
-gd --depth 1 https://github.com/WordPress/WordPress.git /app/code/src
+# use nginx conf for wordpress
+install nginx.conf /app/code/nginx/nginx.conf
 
-# sqlite is prefered
+# wordpress
+gd --branch=4.1-branch --depth 1 https://github.com/WordPress/WordPress.git /app/code/src
+
+# sqlite is preferred
 run svn export http://plugins.svn.wordpress.org/sqlite-integration/tags/1.7/ /app/code/src/wp-content/plugins/sqlite-integration
 
 # prepare wordpress
