@@ -1,0 +1,12 @@
+[
+    {
+        "label": "Home",
+        "path": "/",
+        "auth": false
+    },
+    {
+        "label": "Admin",
+        "path": "/wp-login.php",
+        "auth": true
+    }
+]

@@ -38,3 +38,6 @@ replace /app/code/src/wp-config.php "'AUTH_SALT',        'put your unique phrase
 replace /app/code/src/wp-config.php "'SECURE_AUTH_SALT', 'put your unique phrase here'" "'SECURE_AUTH_SALT', '85+]a5r-&&_|=8!Y{(f ~Az/e2o+$tF,-]7Lm%?PL =+0S)0Ik~8pKDtGaRe+nm/'"
 replace /app/code/src/wp-config.php "'LOGGED_IN_SALT',   'put your unique phrase here'" "'LOGGED_IN_SALT',   'gmrVhivjw2~;O}8e>N|^BlmfG-O?+?2D/Qb,H`3&v?j3GSd[](,M*3XU1TV/&V7X'"
 replace /app/code/src/wp-config.php "'NONCE_SALT',       'put your unique phrase here'" "'NONCE_SALT',       '+`(kS*KM,rI[(@r~ZuN|h:1aN+]-giS(~]E]*?)Kj![2N*L/ZA[z)0bk;,a0yNSw'"
+
+# install the portals
+install portals.json /app/code/portals.json
