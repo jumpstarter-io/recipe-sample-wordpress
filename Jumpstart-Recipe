@@ -7,6 +7,9 @@ package php5 nginx nodejs
 gd https://github.com/jumpstarter-io/js-init.git /app/code/js-init
 run ln -s /app/code/js-init/init.js /app/code/init
 
+# check out js-php-env
+gd https://github.com/jumpstarter-io/js-php-env.git /app/code/js-php-env
+
 # install our daemons.json
 install daemons.json /app/code/daemons.json
 
@@ -41,3 +44,6 @@ replace /app/code/src/wp-config.php "'NONCE_SALT',       'put your unique phrase
 
 # install the portals
 install portals.json /app/code/portals.json
+
+# install the wordpress specific env
+install wp-env.json /app/code/wp-env.json

@@ -1,0 +1,6 @@
+{
+    "theme": "twentyfourteen",
+    "plugins": [
+        "hello.php"
+    ]
+}
