@@ -27,6 +27,9 @@ install /app/code/src/wp-content/plugins/sqlite-integration/db.php /app/code/src
 install /app/code/src/wp-config-sample.php /app/code/src/wp-config.php
 run ln -s /app/state/uploads /app/code/src/wp-content/uploads
 
+# kopfwelt - pluggins
+run svn export http://plugins.svn.wordpress.org/remove-category-url/tags/0.1.0/ /app/code/src/wp-content/plugins/remove-category-url
+
 # install the jumpstarter wordpress plugin
 gd https://github.com/jumpstarter-io/wp-jumpstarter.git /app/code/src/wp-content/plugins/jumpstarter
 insert /app/code/src/wp-config.php  " */" "define('DISALLOW_FILE_MODS', true);"
