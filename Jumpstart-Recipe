@@ -17,10 +17,10 @@ install daemons.json /app/code/daemons.json
 install nginx.conf /app/code/nginx/nginx.conf
 
 # wordpress
-gd --branch=4.1-branch --depth 1 https://github.com/WordPress/WordPress.git /app/code/src
+gd --depth 1 https://github.com/WordPress/WordPress.git /app/code/src
 
 # sqlite is preferred
-run svn export http://plugins.svn.wordpress.org/sqlite-integration/tags/1.7/ /app/code/src/wp-content/plugins/sqlite-integration
+gd https://github.com/jumpstarter-io/wp-sqlite-integration.git /app/code/src/wp-content/plugins/sqlite-integration
 
 # prepare wordpress
 install /app/code/src/wp-content/plugins/sqlite-integration/db.php /app/code/src/wp-content/db.php
