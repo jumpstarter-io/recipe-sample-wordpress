@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+CACHE_PATH="/app/code/run/nginx/tmp"
+
+# Flush existing nginx cache.
+rm -rf $CACHE_PATH/*
+
+# Initialize nginx cache.
+mkdir -p $CACHE_PATH/{client-body,proxy,fastcgi,uwsgi,scgi}

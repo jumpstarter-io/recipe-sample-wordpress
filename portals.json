@@ -5,7 +5,7 @@
         "auth": false
     },
     {
-        "label": "Admin",
+        "label": "WordPress Login",
         "path": "/wp-login.php",
         "auth": true
     }

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p /app/code/run/php5/sessions

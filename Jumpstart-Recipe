@@ -3,6 +3,11 @@ name wordpress
 # install php5, nginx and nodejs packages with jumpstart
 package php5 nginx nodejs
 
+# up the limits for php processes as WordPress has tasks that can run for a good long while
+replace /app/code/php5/php-fpm.conf "pm.max_children = 1" "pm.max_children = 3"
+replace /app/code/php5/php-fpm.conf "pm.start_servers = 1" "pm.start_servers = 2"
+replace /app/code/php5/php-fpm.conf "pm.max_spare_servers = 1" "pm.max_spare_servers = 2"
+
 # checking out js-init
 gd https://github.com/jumpstarter-io/js-init.git /app/code/js-init
 run ln -s /app/code/js-init/init.js /app/code/init
@@ -16,6 +21,18 @@ install daemons.json /app/code/daemons.json
 # use nginx conf for wordpress
 install nginx.conf /app/code/nginx/nginx.conf
 
+###
+# Remove these lines when the nginx and php packages has been updated. Also remove file "nginx_pre-exec".
+###
+install nginx_pre-exec /app/code/nginx/pre-exec
+run chmod +x /app/code/nginx/pre-exec
+install php5_pre-exec /app/code/php5/pre-exec
+run chmod +x /app/code/php5/pre-exec
+replace /app/code/php5/php.ini 'session.save_path = "/app/state/php-sessions"' 'session.save_path = "/app/code/run/php5/sessions"'
+###
+# Remove above lines.
+###
+
 # wordpress
 gd --depth 1 https://github.com/WordPress/WordPress.git /app/code/src
 
@@ -25,12 +42,10 @@ gd https://github.com/jumpstarter-io/wp-sqlite-integration.git /app/code/src/wp-
 # prepare wordpress
 install /app/code/src/wp-content/plugins/sqlite-integration/db.php /app/code/src/wp-content/db.php
 install /app/code/src/wp-config-sample.php /app/code/src/wp-config.php
-run ln -s /app/state/uploads /app/code/src/wp-content/uploads
 
 # install the jumpstarter wordpress plugin
-gd https://github.com/jumpstarter-io/wp-jumpstarter.git /app/code/src/wp-content/plugins/jumpstarter
-insert /app/code/src/wp-config.php  " */" "define('DISALLOW_FILE_MODS', true);"
-insert /app/code/src/wp-config.php "define('DISALLOW_FILE_MODS', true);" "define('DB_DIR', '/app/state/wp-db');"
+gd --branch=ftr-v2 https://github.com/jumpstarter-io/wp-jumpstarter.git /app/code/src/wp-content/plugins/jumpstarter
+insert /app/code/src/wp-config.php "define('DB_COLLATE', '');" "define('DB_DIR', '/app/code/wp-db');"
 
 # change these salts if you like, but you can't have '#' in them.
 replace /app/code/src/wp-config.php "'AUTH_KEY',         'put your unique phrase here'" "'AUTH_KEY',         ']CkQOfQKrsCHy!e!B>``-s{&^=,@3Gi5jP|x.Rb+,_(4eVz@P/+ByMn;NhJ?85Jj'"
