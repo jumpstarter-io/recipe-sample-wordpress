@@ -47,16 +47,6 @@ install /app/code/src/wp-config-sample.php /app/code/src/wp-config.php
 gd --branch=ftr-v2 https://github.com/jumpstarter-io/wp-jumpstarter.git /app/code/src/wp-content/plugins/jumpstarter
 insert /app/code/src/wp-config.php "define('DB_COLLATE', '');" "define('DB_DIR', '/app/code/wp-db');"
 
-# change these salts if you like, but you can't have '#' in them.
-replace /app/code/src/wp-config.php "'AUTH_KEY',         'put your unique phrase here'" "'AUTH_KEY',         ']CkQOfQKrsCHy!e!B>``-s{&^=,@3Gi5jP|x.Rb+,_(4eVz@P/+ByMn;NhJ?85Jj'"
-replace /app/code/src/wp-config.php "'SECURE_AUTH_KEY',  'put your unique phrase here'" "'SECURE_AUTH_KEY',  '4+f{h+[lV_mh}2q3Dlmj/MmqDjg?e[6]NX6K^8@|Kgb|7&n@XO?*eyF+fdq-[2|X'"
-replace /app/code/src/wp-config.php "'LOGGED_IN_KEY',    'put your unique phrase here'" "'LOGGED_IN_KEY',    'jD.|1x5A}34L4Ce $B^j7Hcdj];7eADa4zB|MI{A -[N3&TG]mx0.cQ:d${WGIc^'"
-replace /app/code/src/wp-config.php "'NONCE_KEY',        'put your unique phrase here'" "'NONCE_KEY',        '213G+*9xTdEAzU2Fb`X|n`G|^shw-%Pt|Agv@Dus5G0-{J5[yP5iR|<ZWR`M/A,c'"
-replace /app/code/src/wp-config.php "'AUTH_SALT',        'put your unique phrase here'" "'AUTH_SALT',        'goM]RH=c3+9H0Q% w&mXiG]SIAao;k[)6>i~%Kc)Q11D4U.-x^mPIb|7-$){8c9K'"
-replace /app/code/src/wp-config.php "'SECURE_AUTH_SALT', 'put your unique phrase here'" "'SECURE_AUTH_SALT', '85+]a5r-&&_|=8!Y{(f ~Az/e2o+$tF,-]7Lm%?PL =+0S)0Ik~8pKDtGaRe+nm/'"
-replace /app/code/src/wp-config.php "'LOGGED_IN_SALT',   'put your unique phrase here'" "'LOGGED_IN_SALT',   'gmrVhivjw2~;O}8e>N|^BlmfG-O?+?2D/Qb,H`3&v?j3GSd[](,M*3XU1TV/&V7X'"
-replace /app/code/src/wp-config.php "'NONCE_SALT',       'put your unique phrase here'" "'NONCE_SALT',       '+`(kS*KM,rI[(@r~ZuN|h:1aN+]-giS(~]E]*?)Kj![2N*L/ZA[z)0bk;,a0yNSw'"
-
 # install the portals
 install portals.json /app/code/portals.json
 
